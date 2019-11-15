@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+
+  news-api:
+    image: muilpp/news-api:latest
+    networks: 
+      - test-network
+    ports: 
+      - 8090:8090
+    depends_on:
+      - database
+
+  database:
+    image: muilpp/news-mysql:latest
+    networks:
+      - test-network
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=news
+
+networks:
+  test-network: 
